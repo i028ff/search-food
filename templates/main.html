@@ -61,8 +61,7 @@
 				<!-- <form action="/search_index" class="word" method="POST"> -->
 				<form action="/search_index" method="POST"> 
 					<input type="text" class="word" name="word" placeholder="ラーメン？" id ="placeholder">
-					<input type="hidden" class="latitude" name="latitude" value=getPosition().position.coords.latitude>
-					<input type="hidden" class="latitude" name="latitude" value=getPosition().position.coords.latitude>
+					<input type="hidden" class="latitude" name="latitude" value=getPosition()>
 					<a href="{{url_for('search_index')}}">
 						<button onclick="getPosition();" type="submit" value="register">検索</button>
 					</a>
