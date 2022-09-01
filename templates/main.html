@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang = "ja">
 	<head>
 		<meta charset="UTF-8">
 		<title>ごはんたべたべあぷり</title>
@@ -7,10 +7,50 @@
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
 		<meta name="format-detection" content="telephone=no">
 		<meta name="viewport" content="width=device-width,initial-scale=1">
-		<link href="http://fonts.googleapis.com/css?family=Chivo" rel="stylesheet" type="static/css/nyan.css">
-		<link href="http://fonts.googleapis.com/css?family=Donegal+One" rel="stylesheet" type="static/css/nyan.css">
-        <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/nyan.css') }}">
+		<link href="http://fonts.googleapis.com/css?family=Chivo" rel="stylesheet" type="static/css/main.css">
+		<link href="http://fonts.googleapis.com/css?family=Donegal+One" rel="stylesheet" type="static/css/main.css">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/main.css') }}">
+
+		<script>
+			// Geolocation APIに対応している
+			if (navigator.geolocation) {
+			  alert("この端末では位置情報が取得できます");
+			// Geolocation APIに対応していない
+			} else {
+			  alert("この端末では位置情報が取得できません");
+			}
+		
+			// 現在地取得処理
+			function getPosition() {
+			  // 現在地を取得
+			  navigator.geolocation.getCurrentPosition(
+				// 取得成功した場合
+				function(position) {
+					alert("緯度:"+position.coords.latitude+",経度"+position.coords.longitude);
+				},
+				// 取得失敗した場合
+				function(error) {
+				  switch(error.code) {
+					case 1: //PERMISSION_DENIED
+					  alert("位置情報の利用が許可されていません");
+					  break;
+					case 2: //POSITION_UNAVAILABLE
+					  alert("現在位置が取得できませんでした");
+					  break;
+					case 3: //TIMEOUT
+					  alert("タイムアウトになりました");
+					  break;
+					default:
+					  alert("その他のエラー(エラーコード:"+error.code+")");
+					  break;
+				  }
+				}
+			  );
+			}
+		</script>
 	</head>
+
+	
 	<body>
 		<header class="global-header">
 			<h1>ごはんたべたべあぷり!!!!</h1>
@@ -20,7 +60,7 @@
 				<form action="/search_index" class="word" method="POST">
 						<input type="text" class="word" name="word" placeholder="ラーメン？" id ="placeholder">
 					<a href="{{url_for('search_index')}}">
-						<button type="submit" value="register">検索</button>
+						<button onclick="getPosition();" type="submit" value="register">検索</button>
 					</a>
 				</form>
 			</h1>
@@ -47,7 +87,7 @@
 		</div>
 
 		<script src="http://code.jquery.com/jquery-2.0.0.min.js"></script>
-		<script src="{{url_for('static', filename='js/js.js')}}"></script>
+		<script src="{{url_for('static', filename='js/main.js')}}"></script>
 
 	</body>
 </html>
