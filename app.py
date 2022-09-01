@@ -15,8 +15,8 @@ def index():
 def search_index():
     if request.method == 'POST':
         word = request.form.get('word')
-        position.coords.latitude = request.form.get('position.coords.latitude')
-        position.coords.longitude = request.form.get('position.coords.longitude')
+        latitude = request.form.get('latitude')
+        latitude = request.form.get('latitude')
         key = 'AIzaSyCqmC20D0M_x4rrJyAMgdvJaY7-4cXYNBM' #APIキー
         #print(word)
 
@@ -25,7 +25,7 @@ def search_index():
         # geo_data = requests.get(geo_request_url).json()
         # print(geo_data['latitude'])
         # print(geo_data['longitude'])
-        loc = {'lat': position.coords.latitude, 'lng': position.coords.longitude} # 軽度・緯度を取り出す
+        loc = {'lat': latitude, 'lng': latitude} # 軽度・緯度を取り出す
         place_results = client.places_nearby(location=loc, radius=10000, keyword={word} ,language='ja') #半径1000m以内のカフェ情報を取得
         #pprint.pprint(place_results)
         results = []
