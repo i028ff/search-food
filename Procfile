@@ -1,1 +1,1 @@
-web: python app.py > Procfile
+web: gunicorn app:app --log-file -
