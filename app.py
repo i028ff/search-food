@@ -15,8 +15,8 @@ def index():
 def search_index():
     if request.method == 'POST':
         word = request.form.get('word')
-        latitude = request.form.get('latitude')
-        longitude = request.form.get('longitude')
+        #latitude = request.form.get('latitude')
+        #longitude = request.form.get('longitude')
         
         key = 'AIzaSyCqmC20D0M_x4rrJyAMgdvJaY7-4cXYNBM' #APIキー
         #print(word)
