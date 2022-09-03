@@ -9,14 +9,14 @@ app = Flask(__name__)
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    return render_template('main.html',)
+    return render_template('search.html',)
 
 @app.route('/search_index', methods=['GET', 'POST'])
 def search_index():
     if request.method == 'POST':
         word = request.form.get('word')
-        #latitude = request.form.get('latitude')
-        #longitude = request.form.get('longitude')
+        latitude = request.form.get('latitude')
+        longitude = request.form.get('longitude')
         
         key = 'AIzaSyCqmC20D0M_x4rrJyAMgdvJaY7-4cXYNBM' #APIキー
         #print(word)
@@ -26,8 +26,8 @@ def search_index():
         # geo_data = requests.get(geo_request_url).json()
         #print(geo_data['latitude'])
         #print(geo_data['longitude'])
-        loc = {'lat': 33.9578385, 'lng': 131.281945} # 軽度・緯度を取り出す
-        #loc = {'lat': latitude, 'lng': longitude}
+        #loc = {'lat': 33.9578385, 'lng': 131.281945} # 軽度・緯度を取り出す
+        loc = {'lat': {latitude}, 'lng': {longitude}}
         place_results = client.places_nearby(location=loc, radius=10000, keyword={word} ,language='ja') #半径1000m以内のカフェ情報を取得
         #pprint.pprint(place_results)
         results = []
