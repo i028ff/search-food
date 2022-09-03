@@ -26,9 +26,9 @@ def search_index():
         # geo_data = requests.get(geo_request_url).json()
         #print(geo_data['latitude'])
         #print(geo_data['longitude'])
-        loc = {'lat': 33.9578385, 'lng': 131.281945} # 軽度・緯度を取り出す
+        #loc = {'lat': 33.9578385, 'lng': 131.281945} # 軽度・緯度を取り出す
 
-        #loc = {'lat': latitude, 'lng': longitude}
+        loc = {'lat': latitude, 'lng': longitude}
         print(loc)
         place_results = client.places_nearby(location=loc, radius=10000, keyword={word} ,language='ja') #半径1000m以内のカフェ情報を取得
         #pprint.pprint(place_results)
