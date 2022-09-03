@@ -28,9 +28,9 @@
 				function(position) {
                     alert("緯度:"+position.coords.latitude+",経度"+position.coords.longitude);
 
-					document.getElementById('latitude').value = +position.coords.latitude;
-              		document.getElementById('longitude').value = +position.coords.longitude;
-					
+					//document.getElementById('latitude').value = +position.coords.latitude;
+              		//document.getElementById('longitude').value = +position.coords.longitude;
+					  document.forms['search'].elements['word'].value = "カレー";
 				},
 				// 取得失敗した場合
 				function(error) {
