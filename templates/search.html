@@ -21,11 +21,13 @@
 			}
 		
 			// 現在地取得処理
-			var latitude, longitude = (function getPosition() {
+			function getPosition() {
 			  // 現在地を取得
 			  navigator.geolocation.getCurrentPosition(
 				// 取得成功した場合
 				function(position) {
+                    var latitude = position.coords.latitude;
+                    var longitude = position.coords.longitude;
 					alert("緯度:"+position.coords.latitude+",経度"+position.coords.longitude);
 				},
 				// 取得失敗した場合
@@ -47,7 +49,7 @@
 				}
 			  );
 			  return +position.coords.latitude+ +position.coords.longitude;
-			});
+			};
 		</script>
 	</head>
 
@@ -61,10 +63,8 @@
 				<!-- <form action="/search_index" class="word" method="POST"> -->
 				<form action="/search_index" method="POST"> 
 					<input type="text" class="word" name="word" placeholder="ラーメン？" id ="placeholder">
-					<input type="hidden" class="latitude" name="latitude" value="latitude" >
-					<input type="hidden" class="longitude" name="longitude" value="longitude" >
-					<a href="{{url_for('search_index')}}">
-						<button  type="submit" value="register">+latitude+</button>
+					<a href="{{url_for('search_index', latitude=latitude, longitude=longitude)}}">
+						<button  onclick="getPosition()" type="submit" value="register">+latitude+</button>
 					</a>
 				</form>
 			</h1>
