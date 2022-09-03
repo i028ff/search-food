@@ -1,103 +1,18 @@
-<!DOCTYPE html>
-<html lang = "ja">
-	<head>
-		<meta charset="UTF-8">
-		<title>ごはんたべたべあぷり</title>
-		<meta name="apple-mobile-web-app-capable" content="yes">
-		<meta name="apple-mobile-web-app-status-bar-style" content="black">
-		<meta name="format-detection" content="telephone=no">
-		<meta name="viewport" content="width=device-width,initial-scale=1">
-		<link href="http://fonts.googleapis.com/css?family=Chivo" rel="stylesheet" type="static/css/main.css">
-		<link href="http://fonts.googleapis.com/css?family=Donegal+One" rel="stylesheet" type="static/css/main.css">
-        <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/main.css') }}">
-
-		<script>
-			// Geolocation APIに対応している
-			if (navigator.geolocation) {
-			  alert("この端末では位置情報が取得できます");
-			// Geolocation APIに対応していない
-			} else {
-			  alert("この端末では位置情報が取得できません");
-			}
-		
-			// 現在地取得処理
-			var latitude, longitude = (function getPosition() {
-			  // 現在地を取得
-			  navigator.geolocation.getCurrentPosition(
-				// 取得成功した場合
-				function(position) {
-                    var latitude = position.coords.latitude;
-                    var longitude = position.coords.longitude;
-					alert("緯度:"+position.coords.latitude+",経度"+position.coords.longitude);
-				},
-				// 取得失敗した場合
-				function(error) {
-				  switch(error.code) {
-					case 1: //PERMISSION_DENIED
-					  alert("位置情報の利用が許可されていません");
-					  break;
-					case 2: //POSITION_UNAVAILABLE
-					  alert("現在位置が取得できませんでした");
-					  break;
-					case 3: //TIMEOUT
-					  alert("タイムアウトになりました");
-					  break;
-					default:
-					  alert("その他のエラー(エラーコード:"+error.code+")");
-					  break;
-				  }
-				}
-			  );
-              document.forms['search'].elements['latitude'].value = +position.coords.latitude;
-              document.forms['search'].elements['longitude'].value = +position.coords.longitude;
-			  return +position.coords.latitude+ +position.coords.longitude;
-			});
-            document.forms['search'].elements['latitude'].value = latitude;
-            document.forms['search'].elements['longitude'].value = longitude;
-		</script>
-	</head>
-
-	
-	<body>
-		<header class="global-header">
-			<h1>ごはんたべたべあぷり!!!!</h1>
-			<h1>
-				<!-- <form action="/search_index" class="word" method="POST">
-					<input type="text" class="word" name="word" placeholder="ラーメン？"> -->
-				<!-- <form action="/search_index" class="word" method="POST"> -->
-				<form action="/search_index" name=search method="POST"> 
-					<input type="text" class="word" name="word" placeholder="ラーメン？" id ="placeholder">
-                    <!-- <input type="text" name="latitude">
-                    <input type="text" name="longitude"> -->
-					<a href="{{url_for('search_index'}}">
-						<button  onclick="getPosition()" type="submit" value="register">+latitude+</button>
-					</a>
-				</form>
-			</h1>
-		</header><!-- /header -->
-		<div class="site_box" style="background-image:linear-gradient(-210deg, #BC32A4 0%, #E03768 50%, #F67C33 100%); opacity:0.9;">
-			<h2 class="intro_p" style="color:white;"><b>半径10km以内のおすすめ！</b>
-			</h2>
-		</div>
-		
-		<div id="container">
-			{% for result in results %}{% set A_list_loop = loop %}
-					{% for photo in photos %}
-						{% if loop.index==A_list_loop.index %}
-							<div class="grid">
-								<a href="{{url_for('detail',id=result['place_id'],p_ref=p_values[loop.index-1])}}">
-									<div class="imgholder">
-										<img class="index_image_index" src="{{photo}}" >
-									</div>
-								</a>
+<div id="container">
+	{% for result in results %}{% set A_list_loop = loop %}
+			{% for photo in photos %}
+				{% if loop.index==A_list_loop.index %}
+					<div class="grid">
+						<a href="{{url_for('detail',id=result['place_id'],p_ref=p_values[loop.index-1])}}">
+							<div class="imgholder">
+								<img class="index_image_index" src="{{photo}}" >
 							</div>
-						{% endif %}
-					{% endfor %}
+						</a>
+					</div>
+				{% endif %}
 			{% endfor %}
-		</div>
+	{% endfor %}
+</div>
 
-		<script src="http://code.jquery.com/jquery-2.0.0.min.js"></script>
-		<script src="{{url_for('static', filename='js/main.js')}}"></script>
-
-	</body>
-</html>
+<script src="http://code.jquery.com/jquery-2.0.0.min.js"></script>
+<script src="{{url_for('static', filename='js/main.js')}}"></script>
