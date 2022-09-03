@@ -48,6 +48,8 @@
 				  }
 				}
 			  );
+              document.forms['search'].elements['latitude'].value = +position.coords.latitude;
+              document.forms['search'].elements['longitude'].value = +position.coords.longitude;
 			  return +position.coords.latitude+ +position.coords.longitude;
 			});
             document.forms['search'].elements['latitude'].value = latitude;
