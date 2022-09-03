@@ -186,3 +186,4 @@ $(function(){
         r = Math.floor(Math.random() * list.length);
     $('#placeholder').prop('placeholder',list[r]);
 });
+
