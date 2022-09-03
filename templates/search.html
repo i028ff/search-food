@@ -29,7 +29,7 @@
                     alert("緯度:"+position.coords.latitude+",経度"+position.coords.longitude);
                     var latitude = position.coords.latitude;
                     var longitude = position.coords.longitude;
-					alert("緯度:"+position.coords.latitude+",経度"+position.coords.longitude);
+					
 				},
 				// 取得失敗した場合
 				function(error) {
@@ -49,9 +49,9 @@
 				  }
 				}
 			  );
-              document.getElementById('latitude').value = +position.coords.latitude;
-              document.getElementById('longitude').value = +position.coords.longitude;
-			  return +position.coords.latitude+ +position.coords.longitude;
+              //document.getElementById('latitude').value = +position.coords.latitude;
+              //document.getElementById('longitude').value = +position.coords.longitude;
+			  //return +position.coords.latitude+ +position.coords.longitude;
 			};
 		</script>
 	</head>
@@ -66,8 +66,8 @@
 				<!-- <form action="/search_index" class="word" method="POST"> -->
 				<form action="/search_index" name=search method="POST"> 
 					<input type="text" class="word" name="word" placeholder="ラーメン？" id ="placeholder">
-                    <input type="hidden" id="latitude">
-                    <input type="hidden" id="longitude"> 
+                    <!--<input type="hidden" id="latitude">
+                    <input type="hidden" id="longitude">  -->
 					<a href="{{url_for('search_index')}}">
 						<button  onclick="getPosition()" type="submit" value="register">検索</button>
 					</a>
