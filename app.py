@@ -29,7 +29,7 @@ def search_index():
         #loc = {'lat': 33.9578385, 'lng': 131.281945} # 軽度・緯度を取り出す
         latitude = {latitude}
         longitude = {longitude}
-        loc = {'lat': latitude, 'lng': longitude}
+        loc = {'lat': latitude[0], 'lng': longitude[0]}
         print(loc)
         place_results = client.places_nearby(location=loc, radius=10000, keyword={word} ,language='ja') #半径1000m以内のカフェ情報を取得
         #pprint.pprint(place_results)
