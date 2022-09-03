@@ -45,9 +45,9 @@ def search_index():
                 p_values.append(p_value)
                 photo = 'https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference={}&key={}'.format(p_value,key)
                 photos.append(photo)
-        return render_template('main.html',results=results,photos=photos,p_values=p_values)
+        return render_template('search.html',results=results,photos=photos,p_values=p_values)
     else:
-        return render_template('main.html')
+        return render_template('search.html')
 
 @app.route('/detail/<string:id>/<p_ref>')
 def detail(id,p_ref):
