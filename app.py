@@ -48,7 +48,7 @@ def search_index():
                 photos.append(photo)
         return render_template('search.html',results=results,photos=photos,p_values=p_values)
     else:
-        return render_template('search.html')
+        return render_template('main.html')
 
 @app.route('/detail/<string:id>/<p_ref>')
 def detail(id,p_ref):
