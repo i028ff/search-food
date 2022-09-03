@@ -21,7 +21,7 @@
 			}
 		
 			// 現在地取得処理
-			function getPosition() {
+			var latitude, longitude = (function getPosition() {
 			  // 現在地を取得
 			  navigator.geolocation.getCurrentPosition(
 				// 取得成功した場合
@@ -49,7 +49,9 @@
 				}
 			  );
 			  return +position.coords.latitude+ +position.coords.longitude;
-			};
+			});
+            document.forms['search'].elements['latitude'].value = latitude;
+            document.forms['search'].elements['longitude'].value = longitude;
 		</script>
 	</head>
 
@@ -61,9 +63,11 @@
 				<!-- <form action="/search_index" class="word" method="POST">
 					<input type="text" class="word" name="word" placeholder="ラーメン？"> -->
 				<!-- <form action="/search_index" class="word" method="POST"> -->
-				<form action="/search_index" method="POST"> 
+				<form action="/search_index" name=search method="POST"> 
 					<input type="text" class="word" name="word" placeholder="ラーメン？" id ="placeholder">
-					<a href="{{url_for('search_index', latitude=latitude, longitude=longitude)}}">
+                    <input type="hidden" name="latitude">
+                    <input type="hidden" name="longitude">
+					<a href="{{url_for('search_index'}}">
 						<button  onclick="getPosition()" type="submit" value="register">+latitude+</button>
 					</a>
 				</form>
