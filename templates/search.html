@@ -21,11 +21,12 @@
 			}
 		
 			// 現在地取得処理
-			var latitude, longitude = (function getPosition() {
+			function getPosition() {
 			  // 現在地を取得
 			  navigator.geolocation.getCurrentPosition(
 				// 取得成功した場合
 				function(position) {
+                    alert("緯度:"+position.coords.latitude+",経度"+position.coords.longitude);
                     var latitude = position.coords.latitude;
                     var longitude = position.coords.longitude;
 					alert("緯度:"+position.coords.latitude+",経度"+position.coords.longitude);
@@ -48,12 +49,10 @@
 				  }
 				}
 			  );
-              document.forms['search'].elements['latitude'].value = +position.coords.latitude;
-              document.forms['search'].elements['longitude'].value = +position.coords.longitude;
+              document.getElementById('latitude').value = +position.coords.latitude;
+              document.getElementById('longitude').value = +position.coords.longitude;
 			  return +position.coords.latitude+ +position.coords.longitude;
-			});
-            document.forms['search'].elements['latitude'].value = latitude;
-            document.forms['search'].elements['longitude'].value = longitude;
+			};
 		</script>
 	</head>
 
@@ -67,10 +66,10 @@
 				<!-- <form action="/search_index" class="word" method="POST"> -->
 				<form action="/search_index" name=search method="POST"> 
 					<input type="text" class="word" name="word" placeholder="ラーメン？" id ="placeholder">
-                    <input type="text" name="latitude">
-                    <input type="text" name="longitude">
-					<a href="{{url_for('search_index'}}">
-						<button  onclick="getPosition()" type="submit" value="register">+latitude+</button>
+                    <input type="hidden" id="latitude">
+                    <input type="hidden" id="longitude"> 
+					<a href="{{url_for('search_index')}}">
+						<button  onclick="getPosition()" type="submit" value="register">検索</button>
 					</a>
 				</form>
 			</h1>
