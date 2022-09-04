@@ -187,38 +187,3 @@ $(function(){
     $('#placeholder').prop('placeholder',list[r]);
 });
 
-// Geolocation APIに対応していない場合
-if (navigator.geolocation) {
-    alert("この端末では位置情報が取得できません");
-}
-
-// 現在地取得処理
-window.onload = function () {
-    // 現在地を取得
-    navigator.geolocation.getCurrentPosition(
-        // 取得成功した場合、inputタグに値代入
-        function(position) {
-            var lat = + position.coords.latitude;
-            var lon = + position.coords.longitude;
-            document.forms['search'].elements['latitude'].value = lat;
-            document.forms['search'].elements['longitude'].value = lon;
-        },
-        // 取得失敗した場合
-        function(error) {
-            switch(error.code) {
-                case 1: //PERMISSION_DENIED
-                alert("位置情報の利用が許可されていません");
-                break;
-                case 2: //POSITION_UNAVAILABLE
-                alert("現在位置が取得できませんでした");
-                break;
-                case 3: //TIMEOUT
-                alert("タイムアウトになりました");
-                break;
-                default:
-                alert("その他のエラー(エラーコード:"+error.code+")");
-                break;
-            }
-        }
-    );
-}
