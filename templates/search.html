@@ -71,8 +71,8 @@
 				<!-- <form action="/search_index" class="word" method="POST"> -->
 				<form action="/search_index" name=search method="POST"> 
 					<input type="text" class="word" name="word" placeholder="ラーメン？" id ="placeholder">
-                    <input type="hidden" class="latitude" name="latitude">
-                    <input type="hidden" class="longitude" name="longitude">
+                    <input type="hidden" class="latitude" name="latitude" value="latitude">
+                    <input type="hidden" class="longitude" name="longitude" value="longitude">
 					<a href="{{url_for('search_index')}}">
 						<button  onclick="getPosition()" type="submit" value="register">検索</button>
 					</a>
