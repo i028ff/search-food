@@ -13,70 +13,20 @@
 
 	</head>
 	
-	<script>
-		// Geolocation APIに対応している
-		if (navigator.geolocation) {
-		  alert("この端末では位置情報が取得できます");
-		// Geolocation APIに対応していない
-		} else {
-		  alert("この端末では位置情報が取得できません");
-		}
-	
-		// 現在地取得処理
-		function getPosition() {
-		  // 現在地を取得
-		  navigator.geolocation.getCurrentPosition(
-			// 取得成功した場合
-			function(position) {
-				alert("緯度:"+position.coords.latitude+",経度"+position.coords.longitude);
-				var lat = position.coords.latitude;
-				var lon = position.coords.longitude;
-				document.forms['search'].elements['latitude'].value = lat;
-				document.forms['search'].elements['longitude'].value = lon;
-			},
-			// 取得失敗した場合
-			function(error) {
-			  switch(error.code) {
-				case 1: //PERMISSION_DENIED
-				  alert("位置情報の利用が許可されていません");
-				  break;
-				case 2: //POSITION_UNAVAILABLE
-				  alert("現在位置が取得できませんでした");
-				  break;
-				case 3: //TIMEOUT
-				  alert("タイムアウトになりました");
-				  break;
-				default:
-				  alert("その他のエラー(エラーコード:"+error.code+")");
-				  break;
-			  }
-			  var lat = "35.658584";
-			  var lon = "139.7454316";
-			}
-		  );
-		  document.forms['search'].elements['latitude'].value = lat;
-		  document.forms['search'].elements['longitude'].value = lon;
-		  document.forms['search'].elements['word'].value = "カレー";
-		}
-	  </script>
-
 	<body>
 		<header class="global-header">
 			<h1>ごはんたべたべあぷり!!!!</h1>
 			<h1>
-				<!-- <form action="/search_index" class="word" method="POST">
-					<input type="text" class="word" name="word" placeholder="ラーメン？"> -->
-				<!-- <form action="/search_index" class="word" method="POST"> -->
 				<form action="/search_index" name=search method="POST"> 
 					<input type="text" class="word" name="word" placeholder="ラーメン？" id ="placeholder">
-                    <input type="hidden" name="latitude">
-                    <input type="hidden" name="longitude">
+                    <input type="hidden" class="latitude" name="latitude" value="???">
+                    <input type="hidden" class="longitude" name="longitude" value="???">
 					<a href="{{url_for('search_index')}}">
-						<button onclick="getPosition()" type="submit" value="register">検索</button>
+						<button type="submit" value="register">検索</button>
 					</a>
 				</form>
 			</h1>
-		</header><!-- /header -->
+		</header>
 		<div class="site_box" style="background-image:linear-gradient(-210deg, #BC32A4 0%, #E03768 50%, #F67C33 100%); opacity:0.9;">
 			<h2 class="intro_p" style="color:white;"><b>半径10km以内のおすすめ！</b>
 			</h2>
@@ -98,7 +48,6 @@
 			{% endfor %}
 		</div>
 
-		<script src="http://code.jquery.com/jquery-2.0.0.min.js"></script>
 		<script src="{{url_for('static', filename='js/main.js')}}"></script>
 
 	</body>
