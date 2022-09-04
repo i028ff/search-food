@@ -188,7 +188,7 @@ $(function(){
 });
 
 // Geolocation APIに対応していない場合
-if (navigator.geolocation) {
+if (!navigator.geolocation) {
     alert("この端末では位置情報が取得できません");
 }
 
