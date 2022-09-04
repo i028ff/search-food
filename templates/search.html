@@ -30,7 +30,6 @@
 
 					document.forms['search'].elements['latitude'].value = +position.coords.latitude;
 					document.forms['search'].elements['longtitude'].value = +position.coords.longitude;
-					document.forms['search'].elements['word'].value = "カレー";
 			
 				},
 				// 取得失敗した場合
@@ -54,7 +53,7 @@
 
 				}
 			  );
-              
+              document.forms['search'].elements['word'].value = "カレー";
 			  //return +position.coords.latitude+ +position.coords.longitude;
 			};
 		</script>
