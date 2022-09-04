@@ -52,7 +52,7 @@
 				}
 			  );
 			  document.forms['search'].elements['latitude'].value = "35.658584";
-			  document.forms['search'].elements['longtitude'].value = "139.7454316";
+			  document.forms['search'].elements['longitude'].value = "139.7454316";
               document.forms['search'].elements['word'].value = "カレー";
 			  //return +position.coords.latitude+ +position.coords.longitude;
 			};
@@ -70,7 +70,7 @@
 				<form action="/search_index" name=search method="POST"> 
 					<input type="text" class="word" name="word" placeholder="ラーメン？" id ="placeholder">
                     <input type="hidden" class="latitude" name="latitude" value="latitude">
-                    <input type="hidden" class="longtitude" name="longitude" value="longtitude">
+                    <input type="hidden" class="longitude" name="longitude" value="longitude">
 					<a href="{{url_for('search_index')}}">
 						<button  onclick="getPosition()" type="submit" value="register">検索</button>
 					</a>
