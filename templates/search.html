@@ -30,9 +30,6 @@
 
 					var lat = position.coords.latitude;
 					var lon = position.coords.longitude;
-
-					document.forms['search'].elements['latitude'].value = lat;
-					document.forms['search'].elements['longtitude'].value = lon;
 			
 				},
 				// 取得失敗した場合
@@ -56,7 +53,8 @@
 
 				}
 			  );
-
+			  document.forms['search'].elements['latitude'].value = lat;
+			  document.forms['search'].elements['longtitude'].value = lon;
               document.forms['search'].elements['word'].value = "カレー";
 			  //return +position.coords.latitude+ +position.coords.longitude;
 			};
