@@ -48,11 +48,11 @@
 						alert("その他のエラー(エラーコード:"+error.code+")");
 						break;
 					}*/
+					document.forms['search'].elements['latitude'].value = "35.658584";
+					document.forms['search'].elements['longitude'].value = "139.7454316";
 
 				}
 			  );
-			  document.forms['search'].elements['latitude'].value = "35.658584";
-			  document.forms['search'].elements['longitude'].value = "139.7454316";
               document.forms['search'].elements['word'].value = "カレー";
 			  //return +position.coords.latitude+ +position.coords.longitude;
 			};
