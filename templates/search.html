@@ -35,8 +35,7 @@
 				},
 				// 取得失敗した場合
 				function(error) {
-					document.forms['search'].elements['latitude'].value = 35.658584;
-					document.forms['search'].elements['longtitude'].value = 139.7454316;
+
 				  switch(error.code) {
 					case 1: //PERMISSION_DENIED
 					  alert("位置情報の利用が許可されていません");
